@@ -1,0 +1,47 @@
+import math
+inp = map(int,raw_input().split())
+
+a = inp[0]
+b = inp[1]
+
+def SelectiveFactor(num):
+    info = [0,0,0,False]
+    while num > 0:
+        if num%2 == 0:
+            info[0] += 1
+            num = num/2
+        elif num%3 == 0:
+            info[1] += 1
+            num = num/3
+        elif num%5 == 0:
+            info[2] += 1
+            num = num/5
+        else:
+            if num == 1:
+                info[3] = True
+                return info
+            else:
+                info[3] = False
+                return info
+    info[3] = False
+    return info
+
+Ainfo = SelectiveFactor(a)
+Binfo = SelectiveFactor(b)
+
+# print Ainfo
+# print Binfo
+
+if a == b:
+    print 0
+else:    
+    # print 'this is it'
+    if Ainfo[3] and Binfo[3]:
+        print abs(Ainfo[0] - Binfo[0]) + abs(Ainfo[1] - Binfo[1]) + abs(Ainfo[2] - Binfo[2])
+    else:
+        # print 'hey'
+        if a/((2**Ainfo[0]) * (3**Ainfo[1]) * (5**Ainfo[2])) == b/((2**Binfo[0]) * (3**Binfo[1]) * (5**Binfo[2])):
+            # print 'this executed'
+            print abs(Ainfo[0] - Binfo[0]) + abs(Ainfo[1] - Binfo[1]) + abs(Ainfo[2] - Binfo[2])
+        else:
+            print -1
