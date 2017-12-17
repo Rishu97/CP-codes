@@ -1,0 +1,28 @@
+inp = map(long,raw_input().split())
+n = inp[0]
+m = inp[1]
+k = inp[2]
+bonePos = 1
+holes = [0] * (n +1)
+iNp = map(int,raw_input().split())
+for elem in iNp:
+    holes[elem] = 1
+condition = True
+operation = []
+for i in range(k):
+    inp2 = map(long,raw_input().split())
+    operation.append(inp2)
+for elem in operation:
+    # print 'inp [0] and inp[2]', inp[0],inp[2]
+    if holes[bonePos] == 1:
+        print bonePos
+        condition = False
+        break
+    if bonePos == elem[0]:
+        bonePos = elem[1]
+    elif bonePos == elem[1]:
+        bonePos = elem[0]
+
+
+if condition:
+    print bonePos
