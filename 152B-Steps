@@ -1,0 +1,64 @@
+inp = map(int,raw_input().split())
+n = inp[0]
+m = inp[1]
+
+inp2 = map(int,raw_input().split())
+Xc = inp2[0]
+Yc = inp2[1]
+
+k = input()
+operation = []
+for i in range(k):
+    operation.append(map(int,raw_input().split()))
+step = 0
+for elem in operation:
+    if elem[0] >=0 and elem[1] >=0:
+        if elem[0] != 0 and elem[1] != 0:
+            X_steps = (n - Xc)/elem[0]
+            Y_steps = (m-Yc)/elem[1]
+            stepTaken = min(X_steps,Y_steps)
+        elif elem[0] == 0:
+            Y_steps = (m-Yc)/elem[1]
+            stepTaken = Y_steps
+        elif elem[1] == 0:
+            X_steps = (n - Xc)/elem[0]
+            stepTaken = X_steps        
+
+        # step += stepTaken
+
+        # Xc += elem[0]*stepTaken
+        # Yc += elem[1]*stepTaken
+
+    elif elem[0] < 0 and elem[1] < 0:
+        X_steps = (1 - Xc)/elem[0]
+        Y_steps = (1-Yc)/elem[1]
+        stepTaken = min(X_steps,Y_steps)
+
+
+
+    elif elem[0] < 0:
+        if elem[1] != 0:
+            X_steps = (1 - Xc)/elem[0]
+            Y_steps = (m-Yc)/elem[1]
+            stepTaken = min(X_steps,Y_steps)
+        else:
+            X_steps = (1 - Xc)/elem[0]
+            stepTaken = X_steps
+    elif elem[1] < 0:
+        if elem[0] != 0:
+            X_steps = (n - Xc)/elem[0]
+            Y_steps = (1-Yc)/elem[1]
+            stepTaken = min(X_steps,Y_steps)
+        else:
+            Y_steps = (1 - Yc)/elem[1]
+            stepTaken = Y_steps
+   
+    step += stepTaken
+    Xc += elem[0]*stepTaken
+    Yc += elem[1]*stepTaken
+    # print 'Xc,Yc',Xc,Yc
+
+
+
+
+print step
